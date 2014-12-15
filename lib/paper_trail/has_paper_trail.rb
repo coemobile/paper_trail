@@ -260,6 +260,7 @@ module PaperTrail
 
           data = {
             :event     => paper_trail_event || 'create',
+            :object    => self.class.paper_trail_version_class.object_col_is_json? ? object_attrs : PaperTrail.serializer.dump(object_attrs),
             :whodunnit => PaperTrail.whodunnit
           }
 
