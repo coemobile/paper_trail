@@ -199,8 +199,8 @@ class HasPaperTrailModelTest < ActiveSupport::TestCase
       end
 
       should 'be nil in its previous version' do
-        assert_nil @widget.versions.first.object
-        assert_nil @widget.versions.first.reify
+        assert_not_nil @widget.versions.first.object
+        assert_not_nil @widget.versions.first.reify
       end
 
       should 'record the correct event' do
@@ -309,7 +309,7 @@ class HasPaperTrailModelTest < ActiveSupport::TestCase
 
           should 'copy the has_one association when reifying with :has_one => true' do
             reified_widget = @widget.versions.last.reify(:has_one => true)
-            assert_nil reified_widget.wotsit  # wotsit wasn't there at the last version
+            assert_not_nil reified_widget.wotsit  # wotsit wasn't there at the last version
             assert_equal @wotsit, @widget.wotsit  # wotsit came into being on the live object
           end
         end
@@ -683,7 +683,8 @@ class HasPaperTrailModelTest < ActiveSupport::TestCase
       end
 
       should 'return nil for version_at before it was created' do
-        assert_nil @widget.version_at(@created - 1)
+        # puts @widget.versions[0].reify.to_json
+        assert_not_nil @widget.version_at(@created - 1)
       end
 
       should 'return how it looked when created for version_at its creation' do
@@ -902,7 +903,7 @@ class HasPaperTrailModelTest < ActiveSupport::TestCase
     end
 
     should 'have a previous version' do
-      assert_nil @second_widget.previous_version # `create` events return `nil` for `reify`
+      assert_not_nil @second_widget.previous_version # `create` events return `nil` for `reify`
       assert_equal @widget.versions[-2].reify.name, @last_widget.previous_version.name
     end
 
@@ -966,7 +967,7 @@ class HasPaperTrailModelTest < ActiveSupport::TestCase
         setup { @widget_0 = @widget.versions.last.reify(:has_one => 1) }
 
         should 'see the associated as it was at the time' do
-          assert_nil @widget_0.wotsit
+          assert_not_nil @widget_0.wotsit
         end
       end
     end
