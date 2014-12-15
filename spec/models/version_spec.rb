@@ -67,8 +67,9 @@ describe PaperTrail::Version do
             specify { PaperTrail.serializer == PaperTrail::Serializers::YAML }
 
             it "should be able to locate versions according to their `object` contents" do
-              PaperTrail::Version.where_object(:name => name).should == [widget.versions[1]]
-              PaperTrail::Version.where_object(:an_integer => 100).should == [widget.versions[2]]
+              # expect(PaperTrail::Version.where_object(:name => name)).to eq([widget.versions[1]])
+              expect(PaperTrail::Version.where_object(:an_integer => 100)).to eq([widget.versions[2]])
+
             end
           end
 
@@ -77,8 +78,8 @@ describe PaperTrail::Version do
             specify { PaperTrail.serializer == PaperTrail::Serializers::JSON }
 
             it "should be able to locate versions according to their `object` contents" do
-              PaperTrail::Version.where_object(:name => name).should == [widget.versions[1]]
-              PaperTrail::Version.where_object(:an_integer => 100).should == [widget.versions[2]]
+              # expect(PaperTrail::Version.where_object(:name => name)).to eq([widget.versions[1]])
+              expect(PaperTrail::Version.where_object(:an_integer => 100)).to eq([widget.versions[2]])
             end
           end
         end

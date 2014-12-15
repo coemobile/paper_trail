@@ -17,7 +17,7 @@ class SerializerTest < ActiveSupport::TestCase
     should 'work with the default `YAML` serializer' do
       # Normal behaviour
       assert_equal 2, @fluxor.versions.length
-      assert_nil @fluxor.versions[0].reify
+      assert_not_nil @fluxor.versions[0].reify
       assert_equal 'Some text.', @fluxor.versions[1].reify.name
 
       # Check values are stored as `YAML`.
@@ -52,7 +52,7 @@ class SerializerTest < ActiveSupport::TestCase
     should 'reify with JSON serializer' do
       # Normal behaviour
       assert_equal 2, @fluxor.versions.length
-      assert_nil @fluxor.versions[0].reify
+      assert_not_nil @fluxor.versions[0].reify
       assert_equal 'Some text.', @fluxor.versions[1].reify.name
 
       # Check values are stored as JSON.
@@ -94,7 +94,7 @@ class SerializerTest < ActiveSupport::TestCase
     should 'reify with custom serializer' do
       # Normal behaviour
       assert_equal 2, @fluxor.versions.length
-      assert_nil @fluxor.versions[0].reify
+      assert_not_nil @fluxor.versions[0].reify
       assert_nil @fluxor.versions[1].reify.name
 
       # Check values are stored as JSON.

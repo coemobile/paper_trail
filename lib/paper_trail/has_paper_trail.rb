@@ -255,6 +255,9 @@ module PaperTrail
 
       def record_create
         if paper_trail_switched_on?
+
+          object_attrs = object_attrs_for_paper_trail(self)
+
           data = {
             :event     => paper_trail_event || 'create',
             :whodunnit => PaperTrail.whodunnit

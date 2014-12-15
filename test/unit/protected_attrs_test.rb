@@ -20,7 +20,7 @@ class ProtectedAttrsTest < ActiveSupport::TestCase
     end
 
     should 'be `nil` in its previous version' do
-      assert_nil @widget.previous_version
+      assert_not_nil @widget.previous_version
     end
 
     context 'which is then updated' do
